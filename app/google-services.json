@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "622524492647",
+    "firebase_url": "https://lifeflowerpot.firebaseio.com",
+    "project_id": "lifeflowerpot",
+    "storage_bucket": "lifeflowerpot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622524492647:android:7d72feeedbc6c310",
+        "android_client_info": {
+          "package_name": "com.sverbusoft.lifeflowerpot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622524492647-dv5e9t0ep34eg82ivfnhfasoqamu24cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sverbusoft.lifeflowerpot",
+            "certificate_hash": "cbd6abe74339cc46113b113222f4505e671764fa"
+          }
+        },
+        {
+          "client_id": "622524492647-vbth0a9pek1cdm70fcdbv08l772n0h5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV_jltjcb6pJKVDreGbh53UhRdKcZYPW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622524492647-vbth0a9pek1cdm70fcdbv08l772n0h5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
