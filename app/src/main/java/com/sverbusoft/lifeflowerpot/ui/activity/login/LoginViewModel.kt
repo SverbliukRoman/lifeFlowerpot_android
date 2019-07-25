@@ -13,6 +13,9 @@ import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.ReplaySubject
 
 class LoginViewModel : ViewModel() {
+    val TAG: String by lazy {
+        this::class.java.name
+    }
 
     var email: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
@@ -22,28 +25,30 @@ class LoginViewModel : ViewModel() {
 
     fun login() {
         showProgressBar.postValue(true)
-        UserManager.newInstace().login(email.toString(), password.toString(), object: Observer<FirebaseUser>{
-            override fun onComplete() {
-                showProgressBar.postValue(false);
-                showToast.postValue("Login Success")
-                Log.d(this.javaClass.name, "Login success")
-            }
+        Log.d(TAG, "Start login user by email: ${email.value}, password: ${password.value}")
+        UserManager.newInstace()
+            .login(email.value.toString(), password.value.toString(), object : Observer<FirebaseUser> {
+                override fun onComplete() {
+                    showProgressBar.postValue(false);
+                    showToast.postValue("Login Success")
+                    Log.d(this@LoginViewModel.javaClass.name, "Login success")
+                }
 
-            override fun onSubscribe(d: Disposable) {
+                override fun onSubscribe(d: Disposable) {
 
-            }
+                }
 
-            override fun onNext(t: FirebaseUser) {
+                override fun onNext(t: FirebaseUser) {
 
-            }
+                }
 
-            override fun onError(e: Throwable) {
-                showProgressBar.postValue(false)
-                showToast.postValue(e.message)
-                Log.d(this.javaClass.name, "Login failed")
-            }
+                override fun onError(e: Throwable) {
+                    showProgressBar.postValue(false)
+                    showToast.postValue(e.message)
+                    Log.d(this.javaClass.name, "Login failed")
+                }
 
-        })
+            })
 
 
     }

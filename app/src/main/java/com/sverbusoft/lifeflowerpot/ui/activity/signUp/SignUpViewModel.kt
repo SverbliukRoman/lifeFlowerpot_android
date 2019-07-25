@@ -1,32 +1,41 @@
 package com.sverbusoft.lifeflowerpot.ui.activity.signUp
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.sverbusoft.lifeflowerpot.managers.UserManager
+import com.sverbusoft.lifeflowerpot.ui.activity.login.LoginViewModel
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
 class SignUpViewModel: ViewModel() {
+    val TAG: String = SignUpViewModel::class.java.name
+
     var email: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
 
-    public fun signUp(email: String, password: String){
-        UserManager.newInstace().signUp(email, password, object : Observer<FirebaseUser> {
+    var showProgressBar: MutableLiveData<Boolean> = MutableLiveData()
+    var showToast: MutableLiveData<String> = MutableLiveData()
+
+    fun signUp(){
+        showProgressBar.postValue(true)
+        Log.d(TAG, "Start sign up user by email: ${email.value}, password: ${password.value}")
+        UserManager.newInstace().signUp(email.value.toString(), password.value.toString(), object : Observer<FirebaseUser> {
             override fun onComplete() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onSubscribe(d: Disposable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onNext(t: FirebaseUser) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onError(e: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LifeFlowerpot</string>
+    <string name="sign_in">Sign in</string>
+    <string name="don_t_have_account_yet">Don\'t have account yet?</string>
+    <string name="lets_get_started">Lets get started</string>
+    <string name="grampus">Grampus</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

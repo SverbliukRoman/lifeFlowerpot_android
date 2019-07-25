@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lets get started"
+            android:text="@string/lets_get_started"
             android:textSize="24sp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
             android:id="@+id/textView"/>
 
         <TextView
-            android:text="Grampus"
+            android:text="@string/grampus"
             android:textSize="36sp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
@@ -69,14 +69,14 @@
             <EditText
                 android:id="@+id/et_email_sign_in"
                 android:text="@={viewModel.email}"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
-                android:id="@+id/et_email_sign_up"
+                android:id="@+id/et_password_sign_in"
                 android:text="@={viewModel.password}"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -84,20 +84,22 @@
             <Button
                 android:id="@+id/btn_login"
                 android:onClick="@{()->viewModel.login()}"
+                android:textColor="@android:color/black"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign in"/>
+                android:text="@string/sign_in"/>
 
             <Button
                 android:id="@+id/btn_go_to_sign_up"
                 android:layout_marginTop="6dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
+                android:textColor="@android:color/black"
                 android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have account yet?"/>
+                android:text="@string/don_t_have_account_yet"/>
 
         </LinearLayout>
 

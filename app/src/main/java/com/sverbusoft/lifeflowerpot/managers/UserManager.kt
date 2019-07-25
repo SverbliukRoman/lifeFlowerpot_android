@@ -37,6 +37,6 @@ class UserManager {
                 emitter.onError(it.exception!!.fillInStackTrace())
             }
         }
-    }
+    }.subscribe(subscriber)
 
 }

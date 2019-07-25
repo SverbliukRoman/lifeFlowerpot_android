@@ -20,8 +20,8 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        binding.viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java);
-
+        binding.viewModel = viewModel;
+        supportActionBar!!.hide()
         viewModel.showProgressBar.observe(this, Observer { t ->
             showProgressBar(t)
         })
@@ -31,7 +31,7 @@ class LoginActivity : BaseActivity() {
         })
 
         binding.btnGoToSignUp.setOnClickListener {
-            val intent: Intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 
