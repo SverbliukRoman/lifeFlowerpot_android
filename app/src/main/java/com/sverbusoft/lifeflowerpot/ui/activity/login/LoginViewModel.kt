@@ -1,18 +1,15 @@
 package com.sverbusoft.lifeflowerpot.ui.activity.login
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.sverbusoft.lifeflowerpot.managers.UserManager
-import io.reactivex.Observer
+import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
-import io.reactivex.subjects.PublishSubject
-import io.reactivex.subjects.ReplaySubject
 
 class LoginViewModel : ViewModel() {
+
     val TAG: String by lazy {
         this::class.java.name
     }
@@ -27,8 +24,8 @@ class LoginViewModel : ViewModel() {
         showProgressBar.postValue(true)
         Log.d(TAG, "Start login user by email: ${email.value}, password: ${password.value}")
         UserManager.newInstace()
-            .login(email.value.toString(), password.value.toString(), object : Observer<FirebaseUser> {
-                override fun onComplete() {
+            .login(email.value.toString(), password.value.toString(), object : SingleObserver<FirebaseUser> {
+                override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false);
                     showToast.postValue("Login Success")
                     Log.d(this@LoginViewModel.javaClass.name, "Login success")
@@ -38,14 +35,10 @@ class LoginViewModel : ViewModel() {
 
                 }
 
-                override fun onNext(t: FirebaseUser) {
-
-                }
-
                 override fun onError(e: Throwable) {
                     showProgressBar.postValue(false)
                     showToast.postValue(e.message)
-                    Log.d(this.javaClass.name, "Login failed")
+                    Log.d(TAG, "Login failed")
                 }
 
             })

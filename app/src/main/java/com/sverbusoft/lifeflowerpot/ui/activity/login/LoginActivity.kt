@@ -11,6 +11,7 @@ import com.sverbusoft.lifeflowerpot.ui.activity.BaseActivity
 import com.sverbusoft.lifeflowerpot.ui.activity.signUp.SignUpActivity
 
 class LoginActivity : BaseActivity() {
+
     lateinit var binding: ActivityLoginBinding;
 
     val viewModel: LoginViewModel by lazy {
@@ -21,7 +22,9 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.viewModel = viewModel;
+        binding.executePendingBindings();
         supportActionBar!!.hide()
+
         viewModel.showProgressBar.observe(this, Observer { t ->
             showProgressBar(t)
         })
@@ -34,7 +37,5 @@ class LoginActivity : BaseActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-
-        binding.executePendingBindings();
     }
 }

@@ -2,10 +2,7 @@ package com.sverbusoft.lifeflowerpot.managers
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
-import io.reactivex.Observer
+import io.reactivex.*
 
 class UserManager {
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -14,12 +11,11 @@ class UserManager {
         fun newInstace() = UserManager()
     }
 
-    public fun login(email: String, password: String, subscriber: Observer<FirebaseUser>) =
-        Observable.create { emitter: ObservableEmitter<FirebaseUser> ->
+    public fun login(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) =
+        Single.create { emitter: SingleEmitter<FirebaseUser> ->
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    emitter.onNext(FirebaseAuth.getInstance().currentUser!!)
-                    emitter.onComplete()
+                    emitter.onSuccess(FirebaseAuth.getInstance().currentUser!!)
                 } else {
                     emitter.onError(task.exception!!.fillInStackTrace())
                 }
@@ -27,12 +23,11 @@ class UserManager {
             }
         }.subscribe(subscriber)
 
-    public fun signUp(email: String, password: String, subscriber: Observer<FirebaseUser>) = Observable.create<FirebaseUser> {
+    public fun signUp(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) = Single.create<FirebaseUser> {
         emitter ->
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
-                emitter.onNext(FirebaseAuth.getInstance().currentUser!!)
-                emitter.onComplete()
+                emitter.onSuccess(FirebaseAuth.getInstance().currentUser!!)
             } else {
                 emitter.onError(it.exception!!.fillInStackTrace())
             }
