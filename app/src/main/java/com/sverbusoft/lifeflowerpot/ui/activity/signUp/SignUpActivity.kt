@@ -30,8 +30,9 @@ class SignUpActivity : BaseActivity() {
             showLongToast(it)
         })
 
-        viewModel.activityToStart.observe(this, Observer {
+        viewModel.startActivity.observe(this, Observer {
             startActivity(it.first, it.second)
+            finish()
         })
     }
 }

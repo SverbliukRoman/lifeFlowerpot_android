@@ -1,5 +1,6 @@
 package com.sverbusoft.lifeflowerpot.ui.activity.login
 
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,7 @@ class LoginViewModel : ViewModel() {
 
     var showProgressBar: MutableLiveData<Boolean> = MutableLiveData()
     var showToast: MutableLiveData<String> = MutableLiveData()
+    var startActivity = MutableLiveData<Pair<Class<*>, Bundle?>>()
 
     fun login() {
         showProgressBar.postValue(true)
@@ -28,7 +30,8 @@ class LoginViewModel : ViewModel() {
                 override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false);
                     showToast.postValue("Login Success")
-                    Log.d(this@LoginViewModel.javaClass.name, "Login success")
+                    //startActivity.postValue(Pair())
+                    Log.d(TAG, "Login success")
                 }
 
                 override fun onSubscribe(d: Disposable) {

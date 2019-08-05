@@ -28,7 +28,7 @@ open class BaseActivity : AppCompatActivity() {
             Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
-    protected fun startActivity(nameClass: KClass<*>, bundle: Bundle?){
-        startActivity(Intent(this, nameClass::class.java), bundle)
+    protected fun startActivity(nameClass: Class<*>, bundle: Bundle?){
+        startActivity(Intent(this, nameClass), bundle)
     }
 }

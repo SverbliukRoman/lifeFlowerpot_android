@@ -9,7 +9,6 @@ import com.sverbusoft.lifeflowerpot.managers.UserManager
 import com.sverbusoft.lifeflowerpot.ui.activity.login.LoginActivity
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
-import kotlin.reflect.KClass
 
 class SignUpViewModel : ViewModel() {
 
@@ -20,7 +19,7 @@ class SignUpViewModel : ViewModel() {
     var email: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
 
-    val activityToStart = MutableLiveData<Pair<KClass<*>, Bundle?>>()
+    val startActivity = MutableLiveData<Pair<Class<*>, Bundle?>>()
     var showProgressBar: MutableLiveData<Boolean> = MutableLiveData()
     var showToast: MutableLiveData<String> = MutableLiveData()
 
@@ -32,7 +31,7 @@ class SignUpViewModel : ViewModel() {
                 override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false)
                     showToast.postValue("Sign Up Success")
-                    activityToStart.postValue(Pair(LoginActivity::class, null))
+                    startActivity.postValue(Pair(LoginActivity::class.java, null))
                     Log.d(TAG, "Sign Up success")
                 }
 

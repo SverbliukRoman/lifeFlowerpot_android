@@ -11,7 +11,7 @@ class UserManager {
         fun newInstace() = UserManager()
     }
 
-    public fun login(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) =
+    fun login(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) =
         Single.create { emitter: SingleEmitter<FirebaseUser> ->
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -23,7 +23,7 @@ class UserManager {
             }
         }.subscribe(subscriber)
 
-    public fun signUp(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) = Single.create<FirebaseUser> {
+    fun signUp(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) = Single.create<FirebaseUser> {
         emitter ->
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){

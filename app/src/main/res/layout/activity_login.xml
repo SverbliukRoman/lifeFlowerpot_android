@@ -54,8 +54,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@android:color/white"
-            android:alpha="0.6"
+            android:background="@color/colorLoginForm"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
@@ -77,22 +76,24 @@
                 android:id="@+id/et_password_sign_in"
                 android:text="@={viewModel.password}"
                 android:hint="@string/password"
+                android:inputType="textPassword"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/btn_login"
+                style="@style/StyleBtnLogin"
                 android:onClick="@{()->viewModel.login()}"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_in"/>
 
             <Button
                 android:id="@+id/btn_go_to_sign_up"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:textColor="@android:color/black"
