@@ -14,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/login_background"
+        android:backgroundTintMode="src_atop"
+        android:backgroundTint="@color/colorLoginBackground"
         tools:context=".ui.activity.login.LoginActivity">
 
         <TextView
@@ -54,7 +56,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@color/colorLoginForm"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
@@ -66,16 +67,22 @@
             app:layout_constraintVertical_bias="0.58">
 
             <EditText
+                android:background="@drawable/style_et_login"
                 android:id="@+id/et_email_sign_in"
                 android:text="@={viewModel.email}"
                 android:hint="@string/email"
+                android:textColorHint="@android:color/white"
+                android:backgroundTint="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
                 android:id="@+id/et_password_sign_in"
+                android:background="@drawable/style_et_login"
                 android:text="@={viewModel.password}"
                 android:hint="@string/password"
+                android:textColorHint="@android:color/white"
+                android:backgroundTint="@android:color/white"
                 android:inputType="textPassword"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
@@ -91,12 +98,21 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sign_in"/>
 
+            <!--<com.google.android.material.button.MaterialButton-->
+                <!--android:id="@+id/material_unelevated_button"-->
+                <!--android:onClick="@{()->viewModel.login()}"-->
+                <!--android:text="@string/sign_in"-->
+                <!--android:layout_marginTop="24dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:backgroundTint="@color/colorLoginButton"/>-->
+
             <Button
                 android:id="@+id/btn_go_to_sign_up"
                 android:layout_marginTop="8dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

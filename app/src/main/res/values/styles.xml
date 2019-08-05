@@ -10,8 +10,12 @@
 
     <style name="StyleBtnLogin">
         <item name="android:background">@drawable/style_btn_login</item>
-        <item name="android:paddingStart">32dp</item>
-        <item name="android:paddingEnd">32dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
     </style>
 
 </resources>
