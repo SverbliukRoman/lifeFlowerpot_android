@@ -2,6 +2,7 @@ package com.sverbusoft.lifeflowerpot.ui.activity.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -29,8 +30,12 @@ class LoginActivity : BaseActivity() {
             showProgressBar(t)
         })
 
-        viewModel.showToast.observe(this, Observer { t ->
-            showLongToast(t)
+        viewModel.showToast.observe(this, Observer {
+            showLongToast(it) }
+        )
+
+        viewModel.startActivity.observe(this, Observer {
+            startActivity(it.first, it.second)
         })
 
         binding.btnGoToSignUp.setOnClickListener {

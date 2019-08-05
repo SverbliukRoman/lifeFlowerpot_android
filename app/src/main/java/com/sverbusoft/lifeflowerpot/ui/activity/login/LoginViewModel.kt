@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.sverbusoft.lifeflowerpot.managers.UserManager
+import com.sverbusoft.lifeflowerpot.ui.activity.main.MainActivity
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
@@ -30,7 +31,7 @@ class LoginViewModel : ViewModel() {
                 override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false);
                     showToast.postValue("Login Success")
-                    //startActivity.postValue(Pair())
+                    startActivity.postValue(Pair(MainActivity::class.java, null))
                     Log.d(TAG, "Login success")
                 }
 
