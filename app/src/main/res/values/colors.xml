@@ -8,4 +8,6 @@
     <color name="colorLoginForm">#80FFFFFF</color>
     <color name="colorLoginButton">#6f74dd</color>
     <color name="colorLoginBackground">#80242874</color>
+
+    <color name="colorEtLoginBackground">#25FDFDFD</color>
 </resources>

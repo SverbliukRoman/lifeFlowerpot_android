@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="@string/lets_get_started"
             android:textSize="24sp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -34,7 +34,7 @@
         <TextView
             android:text="@string/grampus"
             android:textSize="36sp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,22 +67,18 @@
             app:layout_constraintVertical_bias="0.58">
 
             <EditText
-                android:background="@drawable/style_et_login"
                 android:id="@+id/et_email_sign_in"
                 android:text="@={viewModel.email}"
                 android:hint="@string/email"
-                android:textColorHint="@android:color/white"
-                android:backgroundTint="@android:color/white"
+                style="@style/StyleEtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
                 android:id="@+id/et_password_sign_in"
-                android:background="@drawable/style_et_login"
                 android:text="@={viewModel.password}"
                 android:hint="@string/password"
-                android:textColorHint="@android:color/white"
-                android:backgroundTint="@android:color/white"
+                style="@style/StyleEtLogin"
                 android:inputType="textPassword"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
@@ -94,7 +90,7 @@
                 android:onClick="@{()->viewModel.login()}"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="24dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_in"/>
 

@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTintMode="src_atop"
+        android:backgroundTint="@color/colorLoginBackground"
         android:background="@drawable/login_background"
         tools:context=".ui.activity.signUp.SignUpActivity">
 
@@ -20,9 +22,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Create your account. It's free and only takes a minute"
+            android:text="@string/create_your_account_it_s_free_and_only_takes_a_minute"
             android:textSize="24sp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/textView"
@@ -35,7 +37,7 @@
         <TextView
             android:text="@string/grampus"
             android:textSize="36sp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,7 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@color/colorLoginForm"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
@@ -70,6 +71,7 @@
             <EditText
                 android:id="@+id/et_name_sign_up"
                 android:hint="Your name"
+                style="@style/StyleEtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -77,6 +79,7 @@
                 android:id="@+id/et_email_sign_up"
                 android:text="@={viewModel.email}"
                 android:hint="@string/email"
+                style="@style/StyleEtLogin"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -85,6 +88,7 @@
                 android:id="@+id/et_password_sign_up"
                 android:text="@={viewModel.password}"
                 android:hint="@string/password"
+                style="@style/StyleEtLogin"
                 android:inputType="textPassword"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
@@ -96,7 +100,7 @@
                 style="@style/StyleBtnLogin"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="24dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sign Up"/>
         </LinearLayout>
