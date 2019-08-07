@@ -9,6 +9,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
     <string name="create_your_account_it_s_free_and_only_takes_a_minute">Create your account. It\'s free and only takes a minute</string>
 </resources>
