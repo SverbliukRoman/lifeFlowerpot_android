@@ -11,4 +11,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_profile">Profile</string>
     <string name="create_your_account_it_s_free_and_only_takes_a_minute">Create your account. It\'s free and only takes a minute</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
