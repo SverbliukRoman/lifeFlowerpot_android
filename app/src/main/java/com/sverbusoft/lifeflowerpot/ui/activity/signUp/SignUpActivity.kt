@@ -20,8 +20,12 @@ class SignUpActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.viewModel = viewModel
         binding.executePendingBindings();
-        supportActionBar!!.hide()
+        supportActionBar?.hide()
 
+        initObserver()
+    }
+
+    fun initObserver(){
         viewModel.showProgressBar.observe(this, Observer {
             showProgressBar(it)
         })

@@ -114,15 +114,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sign_in"/>
 
-            <!--<com.google.android.material.button.MaterialButton-->
-                <!--android:id="@+id/material_unelevated_button"-->
-                <!--android:onClick="@{()->viewModel.login()}"-->
-                <!--android:text="@string/sign_in"-->
-                <!--android:layout_marginTop="24dp"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:backgroundTint="@color/colorLoginButton"/>-->
-
             <Button
                 android:id="@+id/btn_go_to_sign_up"
                 android:layout_marginTop="8dp"

@@ -1,12 +1,16 @@
 package com.sverbusoft.lifeflowerpot.ui.activity.login
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sverbusoft.lifeflowerpot.managers.UserManager
 import com.sverbusoft.lifeflowerpot.ui.activity.main.MainActivity
+import com.sverbusoft.lifeflowerpot.utils.helpers.SharedPrefHelper
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
@@ -46,8 +50,20 @@ class LoginViewModel : ViewModel() {
                 }
 
             })
+    }
 
+    fun saveEmail(email: String){
+        SharedPrefHelper.setUserData(email)
+    }
 
+    fun onCreate(savedInstanceState: Bundle?){
+        if(!TextUtils.isEmpty(SharedPrefHelper.getPreviousUserData()))
+            email.value = SharedPrefHelper.getPreviousUserData()
+    }
+
+    fun checkUserLogin(){
+        if(FirebaseAuth.getInstance().currentUser != null)
+            startActivity.postValue(Pair(MainActivity::class.java, null))
     }
 
 }
