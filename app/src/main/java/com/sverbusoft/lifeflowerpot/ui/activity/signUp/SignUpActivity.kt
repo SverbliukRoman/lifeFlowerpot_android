@@ -11,7 +11,7 @@ import com.sverbusoft.lifeflowerpot.ui.activity.BaseActivity
 class SignUpActivity : BaseActivity() {
     lateinit var binding: ActivitySignUpBinding
 
-    val viewModel: SignUpViewModel by lazy {
+    private val viewModel: SignUpViewModel by lazy {
         ViewModelProviders.of(this).get(SignUpViewModel::class.java)
     }
 
@@ -25,7 +25,7 @@ class SignUpActivity : BaseActivity() {
         initObserver()
     }
 
-    fun initObserver(){
+    private fun initObserver(){
         viewModel.showProgressBar.observe(this, Observer {
             showProgressBar(it)
         })

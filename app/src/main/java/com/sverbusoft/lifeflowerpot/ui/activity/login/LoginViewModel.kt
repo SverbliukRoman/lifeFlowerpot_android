@@ -65,5 +65,4 @@ class LoginViewModel : ViewModel() {
         if(FirebaseAuth.getInstance().currentUser != null)
             startActivity.postValue(Pair(MainActivity::class.java, null))
     }
-
 }
