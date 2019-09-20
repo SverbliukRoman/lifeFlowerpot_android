@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.sverbusoft.lifeflowerpot.di.component.DaggerLoginModelComponent
-import com.sverbusoft.lifeflowerpot.ui.activity.main.MainActivity
 import com.sverbusoft.lifeflowerpot.utils.helpers.SharedPrefHelper
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
@@ -23,21 +22,20 @@ class LoginViewModel : ViewModel() {
     var email: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
 
-    var showProgressBar: MutableLiveData<Boolean> = MutableLiveData()
-    var showToast: MutableLiveData<String> = MutableLiveData()
-    var startActivity = MutableLiveData<Pair<Class<*>, Bundle?>>()
+    var isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    var successLogin: MutableLiveData<FirebaseUser> = MutableLiveData()
+    var errorLogin: MutableLiveData<String> = MutableLiveData()
 
     fun login() {
-        showProgressBar.postValue(true)
+        isLoading.postValue(true)
         Log.d(TAG, "Start login user by email: ${email.value}, password: ${password.value}")
         model.login(
             email.value.toString(),
             password.value.toString(),
             object : SingleObserver<FirebaseUser> {
                 override fun onSuccess(t: FirebaseUser) {
-                    showProgressBar.postValue(false);
-                    showToast.postValue("Login Success")
-                    startActivity.postValue(Pair(MainActivity::class.java, null))
+                    isLoading.postValue(false);
+                    successLogin.postValue(t)
                     Log.d(TAG, "Login success")
                 }
 
@@ -46,8 +44,8 @@ class LoginViewModel : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    showProgressBar.postValue(false)
-                    showToast.postValue(e.message)
+                    isLoading.postValue(false)
+                    errorLogin.postValue(e.message)
                     Log.d(TAG, "Login failed")
                 }
 
@@ -64,7 +62,8 @@ class LoginViewModel : ViewModel() {
     }
 
     fun checkUserLogin() {
-        if (FirebaseAuth.getInstance().currentUser != null)
-            startActivity.postValue(Pair(MainActivity::class.java, null))
+        if(FirebaseAuth.getInstance().currentUser != null){
+            successLogin.postValue(FirebaseAuth.getInstance().currentUser)
+        }
     }
 }

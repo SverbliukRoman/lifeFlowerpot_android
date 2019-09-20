@@ -2,20 +2,16 @@ package com.sverbusoft.lifeflowerpot.ui.activity.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.firebase.auth.FirebaseUser
-import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.sverbusoft.lifeflowerpot.R
 import com.sverbusoft.lifeflowerpot.databinding.ActivityLoginBinding
 import com.sverbusoft.lifeflowerpot.ui.activity.BaseActivity
+import com.sverbusoft.lifeflowerpot.ui.activity.main.MainActivity
 import com.sverbusoft.lifeflowerpot.ui.activity.signUp.SignUpActivity
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
 
 class LoginActivity : BaseActivity() {
 
@@ -43,17 +39,17 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun initObserver(){
-        viewModel.showProgressBar.observe(this, Observer { t ->
+        viewModel.isLoading.observe(this, Observer { t ->
             showProgressBar(t)
         })
 
-        viewModel.showToast.observe(this, Observer {
-            showLongToast(it)
+        viewModel.successLogin.observe(this, Observer {
+            showLongToast("Login Success")
+            startActivity(MainActivity::class.java, null)
         })
 
-        viewModel.startActivity.observe(this, Observer {
-            startActivity(it.first, it.second)
-            finish()
+        viewModel.errorLogin.observe(this, Observer {
+            showLongToast(it)
         })
 
     }
