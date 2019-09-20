@@ -5,12 +5,13 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
-import com.sverbusoft.lifeflowerpot.managers.UserManager
+import com.sverbusoft.lifeflowerpot.di.component.DaggerLoginModelComponent
 import com.sverbusoft.lifeflowerpot.ui.activity.login.LoginActivity
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
 class SignUpViewModel : ViewModel() {
+    private val model = DaggerLoginModelComponent.builder().build().getModel()
 
     val TAG: String by lazy {
         this::class.java.name
@@ -26,8 +27,10 @@ class SignUpViewModel : ViewModel() {
     fun signUp() {
         showProgressBar.postValue(true)
         Log.d(TAG, "Start sign up user by email: ${email.value}, password: ${password.value}")
-        UserManager.newInstace()
-            .signUp(email.value.toString(), password.value.toString(), object : SingleObserver<FirebaseUser> {
+        model.signUp(
+            email.value.toString(),
+            password.value.toString(),
+            object : SingleObserver<FirebaseUser> {
                 override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false)
                     showToast.postValue("Sign Up Success")

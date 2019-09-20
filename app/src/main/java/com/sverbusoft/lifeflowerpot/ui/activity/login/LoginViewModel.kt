@@ -1,20 +1,20 @@
 package com.sverbusoft.lifeflowerpot.ui.activity.login
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.sverbusoft.lifeflowerpot.managers.UserManager
+import com.sverbusoft.lifeflowerpot.di.component.DaggerLoginModelComponent
 import com.sverbusoft.lifeflowerpot.ui.activity.main.MainActivity
 import com.sverbusoft.lifeflowerpot.utils.helpers.SharedPrefHelper
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
 class LoginViewModel : ViewModel() {
+    private val model = DaggerLoginModelComponent.builder().build().getModel()
 
     val TAG: String by lazy {
         this::class.java.name
@@ -30,8 +30,10 @@ class LoginViewModel : ViewModel() {
     fun login() {
         showProgressBar.postValue(true)
         Log.d(TAG, "Start login user by email: ${email.value}, password: ${password.value}")
-        UserManager.newInstace()
-            .login(email.value.toString(), password.value.toString(), object : SingleObserver<FirebaseUser> {
+        model.login(
+            email.value.toString(),
+            password.value.toString(),
+            object : SingleObserver<FirebaseUser> {
                 override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false);
                     showToast.postValue("Login Success")
@@ -52,17 +54,17 @@ class LoginViewModel : ViewModel() {
             })
     }
 
-    fun saveEmail(email: String){
+    fun saveEmail(email: String) {
         SharedPrefHelper.setUserData(email)
     }
 
-    fun onCreate(savedInstanceState: Bundle?){
-        if(!TextUtils.isEmpty(SharedPrefHelper.getPreviousUserData()))
+    fun onCreate(savedInstanceState: Bundle?) {
+        if (!TextUtils.isEmpty(SharedPrefHelper.getPreviousUserData()))
             email.value = SharedPrefHelper.getPreviousUserData()
     }
 
-    fun checkUserLogin(){
-        if(FirebaseAuth.getInstance().currentUser != null)
+    fun checkUserLogin() {
+        if (FirebaseAuth.getInstance().currentUser != null)
             startActivity.postValue(Pair(MainActivity::class.java, null))
     }
 }
