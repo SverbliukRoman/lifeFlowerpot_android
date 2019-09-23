@@ -8,8 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="StyleBtnLogin">
-        <item name="android:background">@drawable/style_btn_login</item>
+    <style name="StyleBtnPrimary">
+        <item name="android:background">@drawable/style_btn_primary</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">8dp</item>
@@ -20,6 +20,7 @@
 
     <style name="StyleEtLogin">
         <item name="android:background">@drawable/style_et_login</item>
+        <item name="android:colorAccent">@android:color/white</item>
     </style>
 
 </resources>

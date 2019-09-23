@@ -124,7 +124,7 @@
             <Button
                 android:id="@+id/btn_login"
                 android:onClick="@{()->viewModel.signUp()}"
-                style="@style/StyleBtnLogin"
+                style="@style/StyleBtnPrimary"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"

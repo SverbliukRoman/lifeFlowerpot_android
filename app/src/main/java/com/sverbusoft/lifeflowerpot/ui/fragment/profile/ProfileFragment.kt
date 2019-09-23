@@ -1,4 +1,4 @@
-package com.sverbusoft.lifeflowerpot.ui.fragment
+package com.sverbusoft.lifeflowerpot.ui.fragment.profile
 
 
 import android.os.Bundle

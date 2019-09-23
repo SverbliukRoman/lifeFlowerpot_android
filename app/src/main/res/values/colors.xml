@@ -2,12 +2,14 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#89C7B8</color>
+
+    <!--basic-->
+    <color name="colorBackgroundButton">#6f74dd</color>
 
     <!--login-->
     <color name="colorLoginForm">#80FFFFFF</color>
-    <color name="colorLoginButton">#6f74dd</color>
-    <color name="colorLoginBackground">#80242874</color>
+    <color name="colorLoginBackground">#593B3E7E</color>
 
     <color name="colorEtLoginBackground">#25FDFDFD</color>
 </resources>
