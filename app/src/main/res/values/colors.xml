@@ -10,6 +10,9 @@
     <!--login-->
     <color name="colorLoginForm">#80FFFFFF</color>
     <color name="colorLoginBackground">#593B3E7E</color>
-
     <color name="colorEtLoginBackground">#25FDFDFD</color>
+
+
+    <color name="colorBackgroundLinearProfile">#83838181</color>
+
 </resources>
