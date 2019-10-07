@@ -1,21 +1,32 @@
 package com.sverbusoft.lifeflowerpot.utils.helpers
 
 import com.google.firebase.database.*
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
 
 open class DatabaseHelper {
     private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     private var compositeDisposable: CompositeDisposable = CompositeDisposable();
 
-    fun <T>setValueToBD(value: T, vararg refs: String){
+    fun <T>setValueToBD(value: T, observer: DisposableCompletableObserver, vararg refs: String){
         var reference: DatabaseReference = database.reference;
         for (ref in refs){
             reference.child(ref)
         }
-        reference.setValue(value);
+        Completable.create {
+            reference.setValue(value) { error, _ ->
+                if(error!=null){
+                    it.onError(error.toException().fillInStackTrace())
+                } else {
+                    it.onComplete()
+                }
+            };
+        }.subscribe(observer)
+
     }
 
     fun setDBListener(subscriber: DisposableObserver<DataSnapshot>, vararg refs: String): Disposable{
