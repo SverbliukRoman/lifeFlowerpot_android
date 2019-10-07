@@ -39,8 +39,8 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun initObserver(){
-        viewModel.isLoading.observe(this, Observer { t ->
-            showProgressBar(t)
+        viewModel.isLoading.observe(this, Observer {
+            showProgressBar(it)
         })
 
         viewModel.successLogin.observe(this, Observer {
@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity() {
     private fun initRxBinding(){
         disposableEmail = RxTextView.textChanges(binding.etEmailSignIn).subscribe {
             viewModel.saveEmail(it.toString())
-        };
+        }
     }
 
     override fun onDestroy() {
