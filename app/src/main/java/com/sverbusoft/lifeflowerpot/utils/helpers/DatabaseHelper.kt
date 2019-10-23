@@ -10,14 +10,13 @@ import io.reactivex.observers.DisposableObserver
 
 open class DatabaseHelper {
     private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private var compositeDisposable: CompositeDisposable = CompositeDisposable();
 
-    fun <T>setValueToBD(value: T, observer: DisposableCompletableObserver, vararg refs: String){
+    fun <T>setValueToBD(value: T, vararg refs: String): Completable{
         var reference: DatabaseReference = database.reference;
         for (ref in refs){
             reference.child(ref)
         }
-        Completable.create {
+        return Completable.create {
             reference.setValue(value) { error, _ ->
                 if(error!=null){
                     it.onError(error.toException().fillInStackTrace())
@@ -25,12 +24,11 @@ open class DatabaseHelper {
                     it.onComplete()
                 }
             };
-        }.subscribe(observer)
-
+        }
     }
 
-    fun setDBListener(subscriber: DisposableObserver<DataSnapshot>, vararg refs: String): Disposable{
-        var o = Observable.create<DataSnapshot> {
+    fun setDBListener(vararg refs: String): Observable<DataSnapshot>{
+        return Observable.create<DataSnapshot> {
             var reference = database.reference;
 
             for (ref in refs){
@@ -48,14 +46,10 @@ open class DatabaseHelper {
 
             })
         }
-
-        var disposable = o.subscribeWith(subscriber)
-        compositeDisposable.add(disposable)
-        return disposable;
     }
 
-    fun getDBData(subscriber: DisposableObserver<DataSnapshot>, vararg refs: String): Disposable{
-        var o = Observable.create<DataSnapshot> {
+    fun getDBData(subscriber: DisposableObserver<DataSnapshot>, vararg refs: String): Observable<DataSnapshot>{
+        return Observable.create<DataSnapshot> {
             var reference = database.reference;
 
             for (ref in refs){
@@ -73,9 +67,5 @@ open class DatabaseHelper {
 
             })
         }
-
-        var disposable = o.subscribeWith(subscriber)
-        compositeDisposable.add(disposable)
-        return disposable;
     }
 }

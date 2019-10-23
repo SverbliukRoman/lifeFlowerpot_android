@@ -9,6 +9,7 @@ import com.sverbusoft.lifeflowerpot.di.component.DaggerLoginModelComponent
 import com.sverbusoft.lifeflowerpot.ui.activity.login.LoginActivity
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableSingleObserver
 
 class SignUpViewModel : ViewModel() {
     private val model = DaggerLoginModelComponent.builder().build().getModel()
@@ -29,8 +30,8 @@ class SignUpViewModel : ViewModel() {
         Log.d(TAG, "Start sign up user by email: ${email.value}, password: ${password.value}")
         model.signUp(
             email.value.toString(),
-            password.value.toString(),
-            object : SingleObserver<FirebaseUser> {
+            password.value.toString())
+            .subscribe(object : DisposableSingleObserver<FirebaseUser>() {
                 override fun onSuccess(t: FirebaseUser) {
                     showProgressBar.postValue(false)
                     showToast.postValue("Sign Up Success")
@@ -38,16 +39,11 @@ class SignUpViewModel : ViewModel() {
                     Log.d(TAG, "Sign Up success")
                 }
 
-                override fun onSubscribe(d: Disposable) {
-
-                }
-
                 override fun onError(e: Throwable) {
                     showProgressBar.postValue(false)
                     showToast.postValue(e.message)
                     Log.d(TAG, "Sign Up failed")
                 }
-
             })
     }
 }

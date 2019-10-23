@@ -20,7 +20,7 @@ class UserManager @Inject constructor() {
             }
         }.subscribe(subscriber)
 
-    fun signUp(email: String, password: String, subscriber: SingleObserver<FirebaseUser>) =
+    fun signUp(email: String, password: String) =
         Single.create<FirebaseUser> { emitter ->
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -29,6 +29,5 @@ class UserManager @Inject constructor() {
                     emitter.onError(it.exception!!.fillInStackTrace())
                 }
             }
-        }.subscribe(subscriber)
-
+        }
 }
